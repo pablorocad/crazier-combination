@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Crazy Animal Sentences</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Andika:wght@400;700&family=Baloo+2:wght@700;800&display=swap">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<!-- APP START -->
+<div class="app" id="app" data-mode="sentence">
+
+  <header class="top">
+    <div class="brand">
+      <h1><span class="sticker">Crazy</span> Animal Sentences</h1>
+      <p class="pattern" aria-label="Sentence pattern: I see, a or an, size, color, animal">
+        <span class="pat-fixed">I see</span><span class="plus">+</span>
+        <span class="pat-fixed">a / an</span><span class="plus">+</span>
+        <span class="tag tag-size">size</span><span class="plus">+</span>
+        <span class="tag tag-color">color</span><span class="plus">+</span>
+        <span class="tag tag-animal">animal</span>
+      </p>
+    </div>
+    <div class="modes" role="group" aria-label="Game mode">
+      <button type="button" id="mode-sentence" class="mode" data-mode="sentence" aria-pressed="true">Whole sentence</button>
+      <button type="button" id="mode-words" class="mode" data-mode="words" aria-pressed="false">Word by word</button>
+    </div>
+  </header>
+
+  <section class="machine" aria-label="Sentence machine">
+    <div class="sentence-line">
+      <div class="slot slot-fixed">
+        <span class="tag slot-label" aria-hidden="true">&nbsp;</span>
+        <div class="plain">I see <span id="article">a</span></div>
+      </div>
+
+      <div class="slot" data-slot="size">
+        <span class="tag tag-size slot-label">size</span>
+        <div class="reel">
+          <button type="button" class="nudge" data-dir="-1" aria-label="Previous size" hidden>&lsaquo;</button>
+          <div class="window" aria-live="polite"><span class="word">big</span></div>
+          <button type="button" class="nudge" data-dir="1" aria-label="Next size" hidden>&rsaquo;</button>
+        </div>
+        <button type="button" class="slot-spin" id="spin-size" hidden>Spin size</button>
+      </div>
+
+      <div class="slot" data-slot="color">
+        <span class="tag tag-color slot-label">color</span>
+        <div class="reel">
+          <button type="button" class="nudge" data-dir="-1" aria-label="Previous color" hidden>&lsaquo;</button>
+          <div class="window" aria-live="polite"><span class="word">blue</span><span class="swatch" aria-hidden="true"></span></div>
+          <button type="button" class="nudge" data-dir="1" aria-label="Next color" hidden>&rsaquo;</button>
+        </div>
+        <button type="button" class="slot-spin" id="spin-color" hidden>Spin color</button>
+      </div>
+
+      <div class="slot" data-slot="animal">
+        <span class="tag tag-animal slot-label">animal</span>
+        <div class="reel">
+          <button type="button" class="nudge" data-dir="-1" aria-label="Previous animal" hidden>&lsaquo;</button>
+          <div class="window" aria-live="polite"><span class="word">dog</span></div>
+          <button type="button" class="nudge" data-dir="1" aria-label="Next animal" hidden>&rsaquo;</button>
+        </div>
+        <button type="button" class="slot-spin" id="spin-animal" hidden>Spin animal</button>
+      </div>
+
+      <div class="slot slot-fixed slot-period">
+        <span class="tag slot-label" aria-hidden="true">&nbsp;</span>
+        <div class="plain">.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="play">
+    <div class="stage" id="stage" role="img" aria-label="A big blue dog">
+      <div class="mystery" id="mystery" hidden>?</div>
+      <div class="animal-pos" id="animal-pos">
+        <span class="animal" id="animal">
+          <span class="glyph base" aria-hidden="true"></span><span class="glyph tint" aria-hidden="true"></span>
+        </span>
+      </div>
+      <div class="ground"></div>
+    </div>
+
+    <div class="panel">
+      <button type="button" id="spin-all" class="big-button">Spin!</button>
+      <button type="button" id="new-round" class="big-button" hidden>New round</button>
+      <button type="button" id="speak" class="speak">
+        <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        Listen
+      </button>
+      <label class="auto" id="auto-label"><input type="checkbox" id="auto-speak" checked> Read aloud after each spin</label>
+      <p class="hint" id="hint"></p>
+    </div>
+  </section>
+
+  <section class="history" aria-labelledby="history-title">
+    <h2 id="history-title">Our crazy sentences</h2>
+    <p class="history-empty" id="history-empty" hidden>Spin to add sentences here.</p>
+    <ul class="history-list" id="history-list"></ul>
+  </section>
+
+</div>
+<!-- APP END -->
+<script src="script.js"></script>
+</body>
+</html>
